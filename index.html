@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hi Akankshaaaaaa 🎉</title>
+
+<!-- 🎉 Favicon -->
 <link rel="icon" type="image/svg+xml"
 href="data:image/svg+xml,
 <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
@@ -130,6 +132,7 @@ button:hover{ transform:scale(1.1); }
         opacity:0.8;
     }
 }
+
 /* Footer */
 .footer{
     position:fixed;
@@ -137,26 +140,24 @@ button:hover{ transform:scale(1.1); }
     width:100%;
     text-align:center;
     font-size:14px;
-    opacity:0.8;
+    opacity:0.9;
 }
 
 .footer a{
-    color:#ffffff;
+    color:white;
     text-decoration:none;
     font-weight:600;
-    transition:0.3s;
 }
 
 .footer a:hover{
-    color:#ffb6f0;
-    text-shadow:0 0 10px pink;
+    text-decoration:underline;
 }
 </style>
 </head>
 <body>
 
 <h1>Hi Akankshaaaaaa 🎉</h1>
-<h2>Happy Birthdayyyyy 🎂✨</h2>
+<h2>It’s YOUR Birthdayyyyy 🎂✨</h2>
 
 <button onclick="openModal('roastModal')">😂 Roast Mode</button>
 <button onclick="openModal('quizModal')">🎮 Birthday Quiz</button>
@@ -196,10 +197,18 @@ button:hover{ transform:scale(1.1); }
 </div>
 </div>
 
-<!-- Birthday Song -->
+<!-- 🎵 Auto Birthday Song -->
 <audio autoplay loop>
 <source src="https://www2.cs.uic.edu/~i101/SoundFiles/BabyElephantWalk60.wav" type="audio/mpeg">
 </audio>
+
+<!-- Footer -->
+<div class="footer">
+    Crafted with 🎉 by 
+    <a href="https://rohitroy.in" target="_blank">
+        Rohit Roy
+    </a>
+</div>
 
 <script>
 
@@ -214,7 +223,9 @@ function closeModal(id){
 /* Close on outside click */
 document.querySelectorAll(".modal").forEach(modal=>{
     modal.addEventListener("click",function(e){
-        if(e.target===modal) modal.classList.remove("active");
+        if(e.target===modal){
+            modal.classList.remove("active");
+        }
     });
 });
 
@@ -298,13 +309,6 @@ function partyMode(){
     },5000);
 }
 </script>
-
-<div class="footer">
-    Crafted with 🎉 by 
-    <a href="https://rohitroy.in" target="_blank">
-        Rohit Roy
-    </a>
-</div>
 
 </body>
 </html>
