@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hi Akankshaaaaaa  🎉</title>
+<link rel="icon" type="image/svg+xml"
+href="data:image/svg+xml,
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
+<text y='0.9em' font-size='90'>🎉</text>
+</svg>">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif;}
+
+body{
+    min-height:100vh;
+    text-align:center;
+    color:white;
+    background:linear-gradient(-45deg,#ff0080,#ff8c00,#40e0d0,#ff1493);
+    background-size:400% 400%;
+    animation:bgMove 10s ease infinite;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+@keyframes bgMove{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+h1{
+    font-size:clamp(30px,6vw,60px);
+    margin-bottom:15px;
+}
+
+button{
+    padding:10px 25px;
+    border:none;
+    border-radius:30px;
+    font-size:15px;
+    cursor:pointer;
+    margin:8px;
+    background:white;
+    color:#ff1493;
+    transition:0.3s;
+}
+
+button:hover{ transform:scale(1.1); }
+
+/* MODAL */
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.7);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    visibility:hidden;
+    opacity:0;
+    transition:0.3s;
+}
+
+.modal.active{
+    visibility:visible;
+    opacity:1;
+}
+
+.modal-content{
+    background:white;
+    color:#ff1493;
+    padding:30px;
+    border-radius:20px;
+    max-width:400px;
+    width:90%;
+    animation:zoom 0.4s ease;
+}
+
+@keyframes zoom{
+    from{transform:scale(0.6);}
+    to{transform:scale(1);}
+}
+
+/* Cake */
+.cake{ font-size:80px; cursor:pointer; }
+.candle{ font-size:30px; }
+.hidden{ display:none; }
+
+/* Quiz */
+.quiz-option{
+    display:block;
+    margin:8px auto;
+    padding:8px 15px;
+    background:#ff1493;
+    color:white;
+    border-radius:20px;
+    cursor:pointer;
+}
+
+/* Confetti */
+.confetti{
+    position:absolute;
+    width:10px;
+    height:10px;
+    animation:fall linear forwards;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(100vh) rotate(720deg);
+        opacity:0;
+    }
+}
+
+/* Balloons */
+.balloon{
+    position:absolute;
+    bottom:-100px;
+    font-size:40px;
+    animation:floatBalloon linear forwards;
+}
+
+@keyframes floatBalloon{
+    to{
+        transform:translateY(-120vh);
+        opacity:0.8;
+    }
+}
+</style>
+</head>
+<body>
+
+<h1>Hi Akankshaaaaaa 🎉</h1>
+<h2>It’s YOUR Birthdayyyyy 🎂✨</h2>
+
+<button onclick="openModal('roastModal')">😂 Roast Mode</button>
+<button onclick="openModal('quizModal')">🎮 Birthday Quiz</button>
+<button onclick="openModal('cakeModal')">🎂 Cut the Cake</button>
+<button onclick="partyMode()">🎊 PARTY MODE</button>
+
+<!-- ROAST MODAL -->
+<div id="roastModal" class="modal">
+<div class="modal-content">
+<h3>😂 Official Birthday Roast</h3>
+<p id="roastText" style="margin:15px 0;"></p>
+<button onclick="nextRoast()">Roast Me More 😭</button>
+<button onclick="closeModal('roastModal')">Close</button>
+</div>
+</div>
+
+<!-- QUIZ MODAL -->
+<div id="quizModal" class="modal">
+<div class="modal-content">
+<h3>🎮 Birthday Quiz</h3>
+<p>Who is the best sibling?</p>
+<div class="quiz-option" onclick="quizAnswer(false)">You</div>
+<div class="quiz-option" onclick="quizAnswer(true)">Rohit 😌</div>
+<p id="quizResult" style="margin-top:10px;"></p>
+<button onclick="closeModal('quizModal')">Close</button>
+</div>
+</div>
+
+<!-- CAKE MODAL -->
+<div id="cakeModal" class="modal">
+<div class="modal-content">
+<h3>🎂 Blow the Candle</h3>
+<div class="cake" onclick="cutCake()">🎂</div>
+<div id="candle" class="candle">🕯</div>
+<p id="cakeMessage" style="margin-top:10px;"></p>
+<button onclick="closeModal('cakeModal')">Close</button>
+</div>
+</div>
+
+<!-- Birthday Song -->
+<audio autoplay loop>
+<source src="https://www2.cs.uic.edu/~i101/SoundFiles/BabyElephantWalk60.wav" type="audio/mpeg">
+</audio>
+
+<script>
+
+/* Modal control */
+function openModal(id){
+    document.getElementById(id).classList.add("active");
+}
+function closeModal(id){
+    document.getElementById(id).classList.remove("active");
+}
+
+/* Close on outside click */
+document.querySelectorAll(".modal").forEach(modal=>{
+    modal.addEventListener("click",function(e){
+        if(e.target===modal) modal.classList.remove("active");
+    });
+});
+
+/* ESC close */
+document.addEventListener("keydown",function(e){
+    if(e.key==="Escape"){
+        document.querySelectorAll(".modal").forEach(m=>m.classList.remove("active"));
+    }
+});
+
+/* Roast */
+const roasts=[
+"Another year older… still dramatic 😌",
+"You’re aging like fine milk 😂",
+"Wrinkles loading... please wait ⏳",
+"Still younger than next year though 😭",
+"Happy Birthday to my favorite troublemaker!"
+];
+
+function nextRoast(){
+    document.getElementById("roastText").innerText=
+    roasts[Math.floor(Math.random()*roasts.length)];
+}
+
+/* Quiz */
+function quizAnswer(correct){
+    document.getElementById("quizResult").innerText=
+    correct ? "Correct 😌 Obviously Rohit!" : "Wrong answer 😂 Try again!";
+}
+
+/* Confetti */
+function confettiBlast(){
+    for(let i=0;i<200;i++){
+        const c=document.createElement("div");
+        c.className="confetti";
+        c.style.left=Math.random()*100+"vw";
+        c.style.background=`hsl(${Math.random()*360},100%,50%)`;
+        c.style.animationDuration=(Math.random()*3+2)+"s";
+        document.body.appendChild(c);
+        setTimeout(()=>c.remove(),5000);
+    }
+}
+
+/* Balloons */
+function launchBalloons(){
+    for(let i=0;i<25;i++){
+        const b=document.createElement("div");
+        b.className="balloon";
+        b.innerHTML="🎈";
+        b.style.left=Math.random()*100+"vw";
+        b.style.animationDuration=(Math.random()*5+5)+"s";
+        document.body.appendChild(b);
+        setTimeout(()=>b.remove(),10000);
+    }
+}
+
+/* Cake */
+function cutCake(){
+    document.getElementById("candle").classList.add("hidden");
+    document.getElementById("cakeMessage").innerText="Cake cut!!! 🎉";
+    confettiBlast();
+    launchBalloons();
+}
+
+/* Party Mode */
+function partyMode(){
+    confettiBlast();
+    launchBalloons();
+
+    let colors=["#ff0080","#ff8c00","#40e0d0","#ff1493","#00ffcc","#ff0000"];
+    let i=0;
+    let partyInterval=setInterval(()=>{
+        document.body.style.background=colors[i%colors.length];
+        i++;
+    },200);
+
+    setTimeout(()=>{
+        clearInterval(partyInterval);
+        document.body.style.background="";
+        document.body.style.animation="bgMove 10s ease infinite";
+    },5000);
+}
+</script>
+
+</body>
+</html>
